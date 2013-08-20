@@ -1,9 +1,9 @@
 var module = angular.module('myApp', []);
 
-module.directive('chosen', ['$timeout', '$compile', '$parse', function ($timeout, $compile, $parse) {
-    var startWithNg = function (element) {
-    	if (typeof element == 'string') {
-    		return element.indexOf('ng-') === 0;
+module.directive('chosen', ['$timeout', '$compile', function ($timeout, $compile) {
+    var startWithNg = function (item) {
+    	if (typeof item == 'string') {
+    		return item.indexOf('ng-') === 0;
     	}
     	return false;
     };
@@ -45,13 +45,13 @@ module.directive('chosen', ['$timeout', '$compile', '$parse', function ($timeout
     				$timeout(function () {
     					chosenContainer = element.next();
     					copyNgClass(chosenContainer, element);
-						if (attrs.ngDisabled)
-						{
-							// var attrKey = key.toLowerCase();
-							// attrKey = attrKey.substring(0, 2) + '-' + attrKey.substring(2);
-							chosenContainer.attr('ng-disabled', attrs[key]);
-							//chosenContainer.find('input').attr('ng-disabled', tAttrs[key]);
-						}
+					if (attrs.ngDisabled)
+					{
+						// var attrKey = key.toLowerCase();
+						// attrKey = attrKey.substring(0, 2) + '-' + attrKey.substring(2);
+						chosenContainer.attr('ng-disabled', attrs[key]);
+						//chosenContainer.find('input').attr('ng-disabled', tAttrs[key]);
+					}
     					chosenContainer = $compile(chosenContainer)($scope);
     				}, 0);
     			}, 0);
