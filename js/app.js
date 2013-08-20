@@ -29,7 +29,7 @@ module.directive('chosen', ['$timeout', '$compile', function ($timeout, $compile
     			if (attrs.ngOptions) {
     				var trackPos;
     				var list = attrs.ngOptions.slice(attrs.ngOptions.indexOf(' in ') + 4, (trackPos = attrs.ngOptions.indexOf(' track ')) > -1 ? trackPos : attrs.ngOptions.length);
-    				// watch for model change
+    				// watch for list change
     				$scope.$watch(list, function () {
     					console.log('chosen updated by list change');
     					element.trigger("chosen:updated");
@@ -47,10 +47,7 @@ module.directive('chosen', ['$timeout', '$compile', function ($timeout, $compile
     					copyNgClass(chosenContainer, element);
 					if (attrs.ngDisabled)
 					{
-						// var attrKey = key.toLowerCase();
-						// attrKey = attrKey.substring(0, 2) + '-' + attrKey.substring(2);
 						chosenContainer.attr('ng-disabled', attrs[key]);
-						//chosenContainer.find('input').attr('ng-disabled', tAttrs[key]);
 					}
     					chosenContainer = $compile(chosenContainer)($scope);
     				}, 0);
